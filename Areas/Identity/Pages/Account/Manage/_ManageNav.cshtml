@@ -1,0 +1,32 @@
+@inject SignInManager<IdentityUser> SignInManager
+@{
+    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+}
+<ul class="nav nav-pills flex-column gap-2">
+    <li class="nav-item"><a class="nav-link @ManageNavPages.IndexNavClass(ViewContext) fw-semibold" id="profile" asp-page="./Index" style="border-radius: 12px; transition: 0.3s;"><i class="fa-solid fa-user me-2"></i> Profile</a></li>
+    <li class="nav-item"><a class="nav-link @ManageNavPages.EmailNavClass(ViewContext) fw-semibold" id="email" asp-page="./Email" style="border-radius: 12px; transition: 0.3s;"><i class="fa-solid fa-envelope me-2"></i> Email</a></li>
+    <li class="nav-item"><a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext) fw-semibold" id="change-password" asp-page="./ChangePassword" style="border-radius: 12px; transition: 0.3s;"><i class="fa-solid fa-lock me-2"></i> Password</a></li>
+    <li><hr class="dropdown-divider my-2"></li>
+    <li class="nav-item">
+        <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button id="logout" type="submit" class="nav-link text-danger fw-semibold w-100 text-start" style="border-radius: 12px; transition: 0.3s; border: none; background: transparent;"><i class="fa-solid fa-arrow-right-from-bracket me-2"></i> Logout</button>
+        </form>
+    </li>
+</ul>
+<style>
+    .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+        background-color: var(--primary) !important;
+        box-shadow: 0 4px 10px rgba(46,125,50,0.3);
+    }
+    .nav-pills .nav-link {
+        color: #2c3e50;
+    }
+    .nav-pills .nav-link:hover:not(.active) {
+        background-color: #e8f5e9;
+        color: var(--primary);
+    }
+    #logout:hover {
+        background-color: #ffebee !important;
+        color: #d32f2f !important;
+    }
+</style>

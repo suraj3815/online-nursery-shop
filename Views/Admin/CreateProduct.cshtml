@@ -1,0 +1,42 @@
+@model PlantShopApp.Models.Product
+@{
+    ViewData["Title"] = "Add New Plant";
+}
+
+<div class="container my-5" style="max-width: 600px;">
+    <h2 class="mb-4">Add New Plant</h2>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <form asp-action="CreateProduct" method="post">
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label">Plant Name</label>
+                    <input asp-for="Name" class="form-control" required />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label">Description</label>
+                    <textarea asp-for="Description" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Price" class="form-label">Price ($)</label>
+                        <input asp-for="Price" type="number" step="0.01" class="form-control" required />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Stock" class="form-label">Stock Quantity</label>
+                        <input asp-for="Stock" type="number" class="form-control" required />
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label asp-for="ImageUrl" class="form-label">Image URL / Path</label>
+                    <input asp-for="ImageUrl" class="form-control" placeholder="/images/monstera.jpg" required />
+                </div>
+                
+                <div class="d-flex justify-content-between">
+                    <a asp-action="Products" class="btn btn-outline-secondary">Cancel</a>
+                    <button type="submit" class="btn btn-success">Save Plant</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

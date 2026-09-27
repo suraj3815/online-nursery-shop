@@ -1,0 +1,61 @@
+@model IEnumerable<PlantShopApp.Models.Order>
+@{
+    ViewData["Title"] = "Customer Orders";
+}
+
+<div class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Customer Orders</h2>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">No orders have been placed yet.</div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-hover table-striped shadow-sm bg-white rounded">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Date</th>
+                        <th>Customer ID</th>
+                        <th>Shipping Address</th>
+                        <th>Total Amount</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model)
+                    {
+                        <tr>
+                            <td>#@order.OrderId</td>
+                            <td>@order.OrderDate.ToString("g")</td>
+                            <td><small>@order.UserId.Substring(0, 8)...</small></td>
+                            <td>@order.Address</td>
+                            <td>$@order.TotalAmount</td>
+                            <td>
+                                @if(order.Status == "Pending") { <span class="badge bg-warning text-dark">Pending</span> }
+                                else if(order.Status == "Shipped") { <span class="badge bg-info text-dark">Shipped</span> }
+                                else { <span class="badge bg-success">@order.Status</span> }
+                            </td>
+                            <td>
+                                <form asp-action="UpdateOrderStatus" method="post" class="d-flex gap-2">
+                                    <input type="hidden" name="id" value="@order.OrderId" />
+                                    <select name="status" class="form-select form-select-sm" style="width: auto;">
+                                        <option value="Pending" selected="@(order.Status == "Pending")">Pending</option>
+                                        <option value="Shipped" selected="@(order.Status == "Shipped")">Shipped</option>
+                                        <option value="Delivered" selected="@(order.Status == "Delivered")">Delivered</option>
+                                    </select>
+                                    <button type="submit" class="btn btn-sm btn-outline-primary">Update</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

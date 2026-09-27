@@ -1,0 +1,54 @@
+@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Welcome Back";
+}
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="card shadow-lg border-0" style="width: 100%; max-width: 450px; border-radius: 20px; overflow: hidden;">
+        <div class="card-header text-center" style="background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%); color: white; padding: 2rem 1rem;">
+            <h2 style="font-weight: 700; margin-bottom: 0;">@ViewData["Title"]</h2>
+            <p class="mb-0" style="opacity: 0.9;">Sign in to continue</p>
+        </div>
+        <div class="card-body p-4 p-md-5 bg-white">
+            <form id="account" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+                
+                <div class="form-floating mb-4">
+                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" style="border-radius: 10px;" />
+                    <label asp-for="Input.Email" class="form-label">Email Address</label>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                
+                <div class="form-floating mb-4">
+                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" style="border-radius: 10px;" />
+                    <label asp-for="Input.Password" class="form-label">Password</label>
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                
+                <div class="checkbox mb-4">
+                    <label asp-for="Input.RememberMe" class="form-label">
+                        <input class="form-check-input me-2" asp-for="Input.RememberMe" />
+                        Remember me next time
+                    </label>
+                </div>
+                
+                <button id="login-submit" type="submit" class="btn btn-primary w-100 py-3 mb-4" style="border-radius: 10px; font-weight: 600; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(46,125,50,0.3);">Login to Account</button>
+                
+                <div class="text-center mt-3">
+                    <p class="mb-2">
+                        <a id="forgot-password" asp-page="./ForgotPassword" class="text-success text-decoration-none">Forgot your password?</a>
+                    </p>
+                    <p class="mb-0">
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="text-success text-decoration-none" style="font-weight: 500;">Create a new account</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

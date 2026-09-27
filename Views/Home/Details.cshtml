@@ -1,0 +1,37 @@
+@model PlantShopApp.Models.Product
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<div class="mb-3">
+    <a asp-action="Index" class="text-success text-decoration-none"><i class="fa-solid fa-arrow-left"></i> Back to Plants</a>
+</div>
+
+<div class="card shadow-sm p-4" style="border-radius: 20px; border: none;">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="@Model.ImageUrl" class="img-fluid rounded" style="object-fit: cover; max-height: 500px; width: 100%;" alt="@Model.Name" />
+        </div>
+        <div class="col-md-6">
+            <h1 class="display-5">@Model.Name</h1>
+            <h2 class="text-success fw-bold">₹ @Model.Price</h2>
+            
+            <div class="badge bg-success p-2 fs-6 my-3">
+                <i class="fa-solid fa-check-circle"></i> @Model.Stock Units in Stock
+            </div>
+
+            <p class="lead mt-3" style="line-height: 1.8;">
+                @Model.Description
+            </p>
+
+            <form asp-controller="Cart" asp-action="Add" method="post" class="mt-4 d-flex gap-3 align-items-center">
+                <input type="hidden" name="id" value="@Model.ProductId" />
+                <input type="number" name="quantity" value="1" min="1" max="@Model.Stock" class="form-control" style="width: 100px; font-size: 1.2rem;" />
+                <button type="submit" class="btn btn-primary btn-lg">
+                    <i class="fa-solid fa-cart-plus"></i> Add to Cart
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+@{
+    ViewData["Title"] = "Welcome to PlantShop";
+}
+
+<!-- Hero Section -->
+<div class="container-fluid mb-5 py-5 text-center" style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-radius: 30px; box-shadow: 0 10px 30px rgba(46,125,50,0.1);">
+    <div class="row justify-content-center py-5">
+        <div class="col-md-8">
+            <h1 class="display-3 fw-bold mb-4" style="color: var(--primary);">Discover the Power of Medicinal Plants</h1>
+            <p class="lead text-muted mb-5" style="font-size: 1.25rem;">Your premier destination for healing herbs, natural remedies, and premium medicinal plants to improve your health and well-being.</p>
+            <a asp-controller="Shop" asp-action="Index" asp-route-category="Medicinal" class="btn btn-primary btn-lg px-5 py-3 shadow" style="border-radius: 50px; font-weight: 600; font-size: 1.2rem;">
+                <i class="fa-solid fa-leaf me-2"></i> Explore Medicinal Plants
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="container py-5 mb-5">
+    <div class="row text-center g-4">
+        <div class="col-md-4">
+            <div class="card h-100 p-4 border-0 shadow-sm" style="border-radius: 20px;">
+                <div class="card-body">
+                    <div class="mb-4" style="font-size: 3rem; color: var(--primary);">
+                        <i class="fa-solid fa-seedling"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">Fresh & Healthy</h4>
+                    <p class="text-muted">Every plant is carefully nurtured in our premium greenhouses and hand-selected for quality before it ships.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 p-4 border-0 shadow-sm" style="border-radius: 20px;">
+                <div class="card-body">
+                    <div class="mb-4" style="font-size: 3rem; color: var(--primary);">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">Fast Delivery</h4>
+                    <p class="text-muted">We use specialized packaging to ensure your new plant arrives safely and quickly at your doorstep within 48 hours.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 p-4 border-0 shadow-sm" style="border-radius: 20px;">
+                <div class="card-body">
+                    <div class="mb-4" style="font-size: 3rem; color: var(--primary);">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">Expert Support</h4>
+                    <p class="text-muted">Not sure how to care for your plant? Our team of botanists is available 24/7 to provide free care instructions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- About Us Section -->
+<div class="container mb-5">
+    <div class="row align-items-center bg-white p-5 shadow-sm" style="border-radius: 30px;">
+        <div class="col-md-6 text-center text-md-start mb-4 mb-md-0">
+            <h2 class="fw-bold mb-4" style="color: var(--primary);">Your Medicinal Plant Experts</h2>
+            <p class="text-muted mb-4" style="font-size: 1.1rem; line-height: 1.8;">
+                At PlantShop, we specialize in the ancient art of natural healing. We believe that nature provides the best medicine, and our mission is to bring these powerful healing plants directly to your home. 
+                <br><br>
+                While we carry a wide variety of indoor and outdoor plants, our pride and joy is our massive collection of <strong>Medicinal Herbs</strong>. From stress-relieving Ashwagandha to immune-boosting Echinacea, we have the perfect natural remedy for your wellness journey.
+            </p>
+            <a asp-controller="Shop" asp-action="Index" class="btn btn-outline-success px-4 py-2" style="border-radius: 12px; font-weight: 600;">View All Plants</a>
+        </div>
+        <div class="col-md-6 text-center">
+            <img src="/images/landing_about.jpg" alt="Beautiful Indoor Plants" class="img-fluid shadow" style="border-radius: 20px; max-height: 400px; object-fit: cover;">
+        </div>
+    </div>
+</div>

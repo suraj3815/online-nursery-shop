@@ -1,0 +1,40 @@
+@model IEnumerable<PlantShopApp.Models.Product>
+
+@{
+    ViewData["Title"] = "Plant Shop";
+}
+
+<div class="text-center mb-4">
+    <h2 class="display-5 fw-bold" style="color: var(--primary);"><i class="fa-solid fa-leaf me-2"></i>Medicinal Herb Specialists</h2>
+    <p class="lead text-muted">Explore our massive collection of healing herbs, along with beautiful indoor and outdoor plants.</p>
+</div>
+
+<!-- Category Filters -->
+<div class="d-flex justify-content-center mb-5 gap-2 flex-wrap">
+    <a asp-action="Index" asp-route-category="All" class="btn @(ViewBag.CurrentCategory == "All" ? "btn-primary" : "btn-outline-primary") rounded-pill px-4 fw-bold shadow-sm">All Plants</a>
+    <a asp-action="Index" asp-route-category="Medicinal" class="btn @(ViewBag.CurrentCategory == "Medicinal" ? "btn-primary" : "btn-outline-primary") rounded-pill px-4 fw-bold shadow-sm">Medicinal</a>
+    <a asp-action="Index" asp-route-category="Succulents & Cacti" class="btn @(ViewBag.CurrentCategory == "Succulents & Cacti" ? "btn-primary" : "btn-outline-primary") rounded-pill px-4 fw-bold shadow-sm">Succulents & Cacti</a>
+    <a asp-action="Index" asp-route-category="Outdoor" class="btn @(ViewBag.CurrentCategory == "Outdoor" ? "btn-primary" : "btn-outline-primary") rounded-pill px-4 fw-bold shadow-sm">Outdoor</a>
+    <a asp-action="Index" asp-route-category="Indoor" class="btn @(ViewBag.CurrentCategory == "Indoor" ? "btn-primary" : "btn-outline-primary") rounded-pill px-4 fw-bold shadow-sm">Indoor</a>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @foreach (var item in Model)
+    {
+        <div class="col">
+            <div class="card h-100">
+                <img src="@item.ImageUrl" class="card-img-top" alt="@item.Name" style="height: 250px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">@item.Name</h5>
+                    <h4 class="text-success mb-3">₹ @item.Price</h4>
+                    <a asp-controller="Home" asp-action="Details" asp-route-id="@item.ProductId" class="btn btn-outline-success w-100 mb-2" style="border-radius: 12px; font-weight: 600;">View Details</a>
+                    
+                    <form asp-controller="Cart" asp-action="Add" method="post">
+                        <input type="hidden" name="id" value="@item.ProductId" />
+                        <button type="submit" class="btn btn-primary w-100" style="border-radius: 12px; font-weight: 600;"><i class="fa-solid fa-cart-plus me-2"></i> Add to Cart</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+</div>
